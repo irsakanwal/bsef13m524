@@ -1,0 +1,341 @@
+﻿@{Response.Cache.SetExpires(DateTime.UtcNow.AddMinutes(-1));
+    Response.Cache.SetCacheability(HttpCacheability.NoCache);
+    Response.Cache.SetNoStore();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OBM</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Pendent Store Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script src="~/scripts/jquery-1.11.1.min.js"></script>
+    <!-- //js -->
+    <!-- start-smoth-scrolling -->
+    <script type="text/javascript" src="~/scripts/move-top.js"></script>
+    <script type="text/javascript" src="~/scripts/easing.js"></script>
+    <script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+    </script>
+    <!-- start-smoth-scrolling -->
+    <!-- start menu -->
+    <link href="~/Content/megamenu.css" rel="stylesheet" type="text/css" media="all" />
+    <script type="text/javascript" src="~/scripts/megamenu.js"></script>
+    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
+    <script src="~/scripts/menu_jquery.js"></script>
+    <script src="~/scripts/simpleCart.min.js"> </script>
+    <link href='http://fonts.googleapis.com/css?family=Monda:400,700' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <!-- header -->
+    <!-- //header -->
+    <!-- top-header -->
+    <div class="top_bg">
+        <div class="container">
+            <div class="header_top-sec">
+                <div class="top_right">
+                    @{
+                        var user = Session["Username"];
+                        var id = Session["UserId"];
+                        var prod = Session["prod"];
+                        string userType = (string)Session["type"];}
+                    <ul>
+                        <li><a href="contact.html">@user</a></li>
+                        <!-- <li><a href="login.html">Track Order</a></li>-->
+                    </ul>
+                </div>
+                <div class="top_left">
+                    <ul>
+                        @{
+                            if (user != null && id != null && userType == "user")
+                            {
+                                <li class="top_link">@Html.ActionLink("View Cart", "viewCart", "Home")</li>
+                                <li class="top_link">@Html.ActionLink("Account", "login", "Home")</li>
+                            }
+                        }
+
+
+                    </ul>
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <!-- top-header -->
+    <!-- logo-cart -->
+    <div class="header_top">
+        <div class="container">
+            <div class="logo">
+                <a href="~/Home/index">Books Gallery</a>
+            </div>
+            <div class="header_right">
+
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <!-- //logo-cart -->
+    <!------>
+    <div class="mega_nav">
+        <div class="container">
+            <div class="menu_sec">
+                <!-- start header menu -->
+                <ul class="megamenu skyblue">
+                    <li class="active grid">@Html.ActionLink("Home", "index", "Home", new { @class = "color1" })</li>
+                    @{
+                        if ((user != null && id != null && userType == "user") || (user == null && id == null))
+                        {
+                            <li>
+                                <a class="color1" href="#">collections</a>
+                                <div class="megapanel">
+                                    <div class="row">
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>English Literature</h4>
+                                                <ul>
+                                                    <li>@Html.ActionLink("Text Books", "products", new { cat = "Ebooks" })</li>
+                                                    <li>@Html.ActionLink("Novels", "products", new { cat = "Enovel" })</li>
+                                                    <li>@Html.ActionLink("Short stories", "products", new { cat = "Estory" })</li>
+                                                    <li>@Html.ActionLink("History", "products", new { cat = "Ehistory" })</li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>Urdu Literature</h4>
+                                                <ul>
+                                                    <li>@Html.ActionLink("Text Books", "products", new { cat = "uBooks" })</li>
+                                                    <li>@Html.ActionLink("Novels", "products", new { cat = "Unovel" })</li>
+                                                    <li>@Html.ActionLink("Poetry", "products", new { cat = "Upoetry" })</li>
+                                                    <li>@Html.ActionLink("General Knowledge", "products", new { cat = "Ugk" })</li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>Islamic Literature</h4>
+                                                <ul>
+                                                    <li>@Html.ActionLink("History", "products", new { cat = "Ihistory" })</li>
+                                                    <li>@Html.ActionLink("Hadiths", "products", new { cat = "Ihadith" })</li>
+                                                    <li>@Html.ActionLink("Politics", "products", new { cat = "Ipolitics" })</li>
+                                                    <li>@Html.ActionLink("Ethics", "products", new { cat = "Iethics" })</li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col1">
+                                            <div class="h_nav">
+                                                <h4>More</h4>
+                                                <ul>
+                                                    <li>@Html.ActionLink("Jocks", "products", new { cat = "jocks" })</li>
+                                                    <li>@Html.ActionLink("Riddles", "products", new { cat = "riddles" })</li>
+                                                    <li>@Html.ActionLink("Motivational", "products", new { cat = "motiv" })</li>
+                                                    <li>@Html.ActionLink("Safar Nama", "products", new { cat = "safar" })</li>
+
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col2"></div>
+                                        <div class="col1"></div>
+                                        <div class="col1"></div>
+                                        <div class="col1"></div>
+                                        <div class="col1"></div>
+                                    </div>
+                                </div>
+                            </li>
+                        }
+                    }
+                   
+                    
+                     @{
+
+                        if (user != null && id != null && userType == "admin")
+                        {
+                            <li>
+                                <a href="~/Admin/products" class="color1">Add</a>
+
+                            </li>
+                            <li>
+                                <a href="~/Admin/viewProducts" class="color1">EditProduct</a>
+
+                            </li>
+                            <li>
+                                <a href="~/Admin/viewAll" class="color1">RemoveUser</a>
+
+                            </li>
+                            <li>
+                                <a href="~/Home/logout" class="color1">logout</a>
+
+
+
+                            </li>
+                         }
+                         if (user != null && id != null && userType == "user")
+                         {
+
+                            <li>
+                                <a href="~/Home/editProfile" class="color1">Edit Profile</a>
+
+                            </li>
+                            <li>
+                                <a href="~/Home/logout" class="color1">logout</a>
+
+                            </li>
+
+
+                        }
+
+                        else if (user == null && id == null)
+                        {
+                          
+                            <li>
+                                <a href="~/Home/login" class="color1">Login</a>
+
+                            </li>
+                            <li class="grid">
+
+                                <a href="~/Home/register" class="color1">Sign Up</a>
+
+                            </li>
+
+                        }
+
+
+
+                    }
+
+
+                </ul>
+
+                <script>
+                    $(document).ready(function () {
+
+                        $('#check').hide();
+                        
+
+                //on search type change
+                $('#searchtype').click(function () {
+                    var item = $('#searchtype').val();
+                $('#check').show();
+                $.getJSON("/Home/getItem?searchtype=" + item, function (data) {
+                    $('#check').hide();
+                    if (data != null) {
+                        $('#search-box-input').empty();
+                        $.each(data, function (i, item) {
+                            $("#search-box-input").append('<option value=' + item + '>' + item + ' <option>');
+
+                        });
+                        $('#search-box-input').show();
+                    }
+                    $('#search-box-input').change(function () {
+                        var item = $('#searchtype').val();
+                        var n = $('#search-box-input').val();
+                        $.getJSON("/Home/getItemfromDb?search-box-input=" + n + "&searchtype="+item, function (data) {
+
+                            if (data != null)
+                                $.each(data, function (i, item) {
+                                    $("#prod").append(' <a href="single.html"><img style="height:200px;width:180px" src="~/Files/' + item.file + '"></a><p>Name:' + item.name + '</p>')
+                                });
+                            else
+                                alert("no data");
+
+
+
+
+                        });
+                    });
+
+                    });
+                    });
+                    });
+
+
+                </script>
+                @{
+                    
+                        if (user != null && id != null && userType == "user")
+                        {
+
+                            <div style="margin-top:15px" >
+
+                               
+                                <div class="" >
+                                    <form action="~/Home/search" accept-charset="character set" method="post"> 
+                                         <select id="searchtype" name="type" style="width:100px" onchange="getval(this);">
+
+
+                                    <option value="Author">Author</option>
+
+                                    <option value="Price">Price</option>
+
+                                </select>
+
+                                <select id="search-box-input" name="value" style="width:150px " >
+                                    <option value="0" >Search by..</option>
+
+                                </select>
+                                        <input type="submit" value="search" >
+                                    </form>
+
+                                </div>
+                                
+
+
+                            </div>
+                            <p id="check" style="color:rosybrown ; align-content:center">checking....</p>
+                            
+
+                    }
+                }
+
+                
+
+               
+                <div class="clearfix"></div>
+
+          
+               
+
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <!-- banner -->
+    @RenderBody()
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 footer-grid">
+                <h6>About us</h6>
+                <p>We have designed this website to provide you a market place to online buy books and remain update about new arrivals of books. you have to just sign up and avail the opertunity provided by us !.</p>
+            </div>
+
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="footer-copy">
+        <p>© 2016 Online Book Marketplace. All rights reserved | Design by <a href="#"> Irsa Kanwal</a></p>
+    </div>
+    <!-- //footer -->
+</body>
+</html>

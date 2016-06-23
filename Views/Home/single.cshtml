@@ -1,0 +1,109 @@
+﻿@model BooksGallery.Models.product
+
+    <!---->
+    <!-- single-page -->
+    <div class="single">
+        <div class="container">
+            <div class="single-page">
+                <div class="flexslider details-lft-inf">
+                    <ul class="slides">
+                        <li data-thumb="ages/@Model.photo">
+                            <img src="~/Image/@Model.photo" />
+                        </li>
+                        <li data-thumb="~/Image/@Model.photo">
+                            <img src="~/Image/@Model.photo" />
+                        </li>
+                        <li data-thumb="~/Image/@Model.photo">
+                            <img src="~/Image/@Model.photo" />
+                        </li>
+                        <li data-thumb="~/Image/@Model.photo">
+                            <img src="~/Image/@Model.photo" />
+                        </li>
+                    </ul>
+                </div>
+                <!-- FlexSlider -->
+                <script defer src="~/scripts/jquery.flexslider.js"></script>
+                <link rel="stylesheet" href="~/Content/flexslider.css" type="text/css" media="screen" />
+
+                <script>
+			// Can also be used with $(document).ready()
+			$(window).load(function() {
+			  $('.flexslider').flexslider({
+				animation: "slide",
+				controlNav: "thumbnails"
+			  });
+			});
+                </script>
+                <div class="details-left-info">
+                    <h3>Book description</h3>
+                    
+                    <div class="simpleCart_shelfItem">
+                       
+@{if (Session["Username"] != null && Session["UserId"]!= null)
+    {
+
+        using (Html.BeginForm("saveCart", "Home", FormMethod.Post, new { AUTOCOMPLETE = "off" }))
+        {
+            <fieldset>
+                @Html.HiddenFor(Model => Model.code)
+                @Html.HiddenFor(Model => Model.name)
+                @Html.HiddenFor(Model => Model.author)
+                @Html.HiddenFor(Model => Model.price)
+                @Html.HiddenFor(Model => Model.photo)
+                @Html.HiddenFor(Model => Model.category)
+
+                <div class="single-but item_add">
+                    <input type="submit" value="add to cart">
+                </div>
+            </fieldset>
+        }
+
+    }
+    }
+   
+
+
+
+
+
+                        
+                        
+                    </div>
+                    <div class="flower-type">
+                        <p>Author     ::<a href="#"></a> @Model.author</p>
+                        <p>Book Name  ::<a href="#">@Model.name</a></p>
+                        <p>Price      ::<a href="#">@Model.price</a></p>
+                        <p>Category   ::<a href="#">@Model.category</a></p>
+                    </div>
+                     </div>
+                <div class="clearfix"></div>
+            </div>
+
+            <!-- collapse -->
+            <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Description
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            Books Descriptions 
+                         </div>
+                    </div>
+                </div>
+                
+                
+                
+            </div>
+            <!-- collapse -->
+            <!-- related products -->
+           
+            <!-- //related products -->
+        </div>
+    </div>
+    <!-- single -->
+    

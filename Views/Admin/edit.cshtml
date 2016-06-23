@@ -1,0 +1,92 @@
+﻿
+
+@model BooksGallery.Models.product
+@{
+    ViewBag.Title = "edit";
+}
+
+
+<div align="center">
+    <h2>Edit</h2>
+    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new
+    { enctype = "multipart/form-data", AUTOCOMPLETE = "off" }))
+    {
+        <fieldset>
+            @Html.HiddenFor(Model=>Model.code)
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Book Name :")</li>
+                    <li>@Html.TextBoxFor(Model => Model.name)</li>
+                   
+
+                </div>
+                
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("Author :")</li>
+                    <li>@Html.TextBoxFor(Model => Model.author)</li>
+                    
+                </div>
+               
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("Price :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.price)</li>
+               
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("Category :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.category)</li>
+                
+
+            </ul>
+            
+           
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Title Page :")</li>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="text-info">
+                    <li>  @Html.TextBoxFor(Model => Model.photo)</li>
+
+                </div>
+
+
+            </ul>
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Upload image :")</li>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="text-info">
+                    <li>  @Html.TextBoxFor(Model => Model.photo, new { type = "file" })</li>
+                   
+                </div>
+
+
+            </ul>
+            <div class="clearfix"></div>
+            <input id="regis" type="submit" value="save">
+
+        </fieldset>
+
+        <div>
+            @Html.ActionLink("back to list", "ducts", "Admin")
+        </div>
+    }
+</div>
+
+
+
+

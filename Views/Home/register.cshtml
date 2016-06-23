@@ -1,0 +1,141 @@
+﻿@model BooksGallery.Models.SignUp
+    <script src="~/scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+
+<script>
+
+    $(document).ready(function () {
+        $("#uname").focusout(function () {
+            
+            var user = $("#uname").val();
+            if (user != "") {
+               
+                $.getJSON("/Home/checkUser?uname=" + user, function (data) {
+                    if (data) {
+                        $("#result").html("Username Already Exist");
+                        $("#regis").attr("disabled", true);
+                        
+                    }
+                    else {
+                        $("#result").html("Username Available");
+                        $("#regis").attr("disabled",false);
+                    }
+                })
+            }
+            else {
+                $("#result").html("");
+            }
+        }); 
+        });
+</script>
+
+    <!---->
+    <!-- reg-form -->
+    <div class="reg-form">
+        <div class="container">
+            <div class="reg">
+                <h3>
+                    Register Now
+                </h3>
+                <p>Welcome, please enter the following details to continue.</p>
+                <p>If you have previously registered with us, <a href="~/Home/login">click here</a></p>
+
+               @using (Html.BeginForm("register", "Home", FormMethod.Post, new
+               { enctype = "multipart/form-data" , AUTOCOMPLETE = "off" }))
+               {
+
+                    <fieldset>
+
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("First Name :")</li>
+                               
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.fname)</li>
+                            @Html.ValidationMessageFor(Model => Model.fname)
+
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Last Name :")</li>
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.lname)</li>
+                            @Html.ValidationMessageFor(Model => Model.lname)
+
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Email :")</li>
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.email)</li>
+                            @Html.ValidationMessageFor(Model => Model.email)
+                            
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Password :")</li>
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.password)</li>
+                            @Html.ValidationMessageFor(Model => Model.password)
+
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("User Name :")</li>
+                                
+
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.uname , new {@class="user_name" })</li>
+                            @Html.ValidationMessageFor(Model => Model.uname)
+                            <div class="text-info">
+                                <div id="result"></div>
+                            </div>
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Age :")</li>
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.age)</li>
+                            @Html.ValidationMessageFor(Model => Model.age)
+
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Secret Question :")</li>
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.secretQuiz)</li>
+                            @Html.ValidationMessageFor(Model => Model.secretQuiz)
+
+                        </ul>
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Secret Answer :")</li>
+                            </div>
+                            <li>@Html.EditorFor(Model => Model.secretAns)</li>
+                            @Html.ValidationMessageFor(Model => Model.secretAns)
+
+                        </ul>
+                        
+                        <ul>
+                            <div class="text-info">
+                                <li>@Html.Label("Upload image :")</li>
+                            </div>
+                            <div class="text-info">
+                                <li>  @Html.TextBoxFor(Model => Model.photo, new { type = "file" })</li>
+                                @Html.ValidationMessageFor(Model => Model.photo)
+                            </div>
+
+
+                    </ul>
+                        <input id="regis" type="submit" value="Register Now">
+                        
+                 </fieldset>
+                }
+
+
+
+
+            </div>
+
+        </div>
+    </div>
+   
