@@ -1,0 +1,27 @@
+﻿@model BooksGallery.Models.SignUp
+@{
+    ViewBag.Title = "showPass";
+}
+
+<h2>Your Password</h2>
+@using (Html.BeginForm("resetPass", "Home", FormMethod.Post, new { AUTOCOMPLETE = "off" }))
+{
+    <fieldset>
+        @Html.HiddenFor(Model=>Model.Id)
+        @Html.HiddenFor(Model => Model.fname)
+        @Html.HiddenFor(Model => Model.lname)
+        @Html.HiddenFor(Model => Model.uname)
+        @Html.HiddenFor(Model => Model.secretQuiz)
+        @Html.HiddenFor(Model => Model.secretAns)
+        @Html.HiddenFor(Model => Model.photo)
+        @Html.HiddenFor(Model => Model.email)
+        <ul>
+            <div class="text-info">
+                @Html.Label("Password :")
+            </div>
+            @Html.EditorFor(Model => Model.password)
+       </ul>
+        <input type="submit" value="Reset">
+       </fieldset>
+}
+

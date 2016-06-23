@@ -1,0 +1,69 @@
+﻿@model  List<BooksGallery.Models.SignUp>
+@{
+    ViewBag.Title = "viewAll";
+}
+
+
+<body  >
+    <div >
+        <table border="1" width="70%" style="margin-left:40px ; margin-right:20px ;margin-top:30px; background-color:bisque">
+
+            <tr>
+
+
+                <th>
+
+                    UserName
+
+                </th>
+
+
+                <th>
+
+                    email
+
+                </th>
+
+                <th>
+
+                    Delete
+
+                </th>
+
+
+            </tr>
+
+            @{
+                foreach (var v in Model)
+                {
+
+                    <tr>
+
+
+                        <td>
+
+                            @Html.Encode(v.uname)
+
+                        </td>
+                        <td>
+
+                            @Html.Encode(v.email)
+
+                        </td>
+                        <td>
+
+                            @Html.ActionLink("Delete", "Delete", new { id = v.Id })
+
+                        </td>
+
+                    </tr>
+                }
+
+            }
+
+        </table>
+
+
+    </div>
+
+</body>

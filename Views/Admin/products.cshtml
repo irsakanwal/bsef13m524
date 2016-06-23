@@ -1,0 +1,121 @@
+﻿@model BooksGallery.Models.product
+<script src="~/scripts/jquery-1.11.1.min.js" type="text/javascript"></script>
+@{
+    ViewBag.Title = "products";
+}
+<script>
+
+    $(document).ready(function () {
+        $("#code").focusout(function () {
+
+            var code = $("#code").val();
+            if (code != "") {
+
+                $.getJSON("/Admin/checkUser?code=" + code, function (data) {
+                    if (data) {
+                        $("#result").html("code Already Exist");
+                        $("#adds").attr("disabled", true);
+
+                    }
+                    else {
+                        $("#result").html("code Available");
+                        $("#adds").attr("disabled",false);
+                    }
+                })
+            }
+            else {
+                $("#result").html("");
+            }
+        });
+        });
+</script>
+
+  <!-- reg-form -->
+<div class="reg-form">
+    <div class="container">
+        <div class="reg">
+            <h3>
+                 Add Products
+            </h3>
+            <p>Welcome, please enter the following details to continue.</p>
+           
+@using (Html.BeginForm("Products", "Admin", FormMethod.Post, new
+{ enctype = "multipart/form-data", AUTOCOMPLETE = "off" }))
+{
+
+                <fieldset>
+                  
+                    <ul>
+                        <div class="text-info">
+                            <li>@Html.Label("Book Name :")</li>
+
+                        </div>
+                        <li>@Html.EditorFor(Model => Model.name)</li>
+                        @Html.ValidationMessageFor(Model => Model.name)
+
+                    </ul>
+                    <ul>
+                        <div class="text-info">
+                            <li>@Html.Label("Author name :")</li>
+                        </div>
+                        <li>@Html.EditorFor(Model => Model.author)</li>
+                        @Html.ValidationMessageFor(Model => Model.author)
+
+                    </ul>
+                    <ul>
+                        <div class="text-info">
+                            <li>@Html.Label("Price :")</li>
+                        </div>
+                        <li>@Html.EditorFor(Model => Model.price)</li>
+                        @Html.ValidationMessageFor(Model => Model.price)
+
+                    </ul>
+                    <ul>
+                        <div class="text-info">
+                            <li>@Html.Label("Code:")</li>
+                        </div>
+                        <li>@Html.EditorFor(Model => Model.code)</li>
+                        @Html.ValidationMessageFor(Model => Model.code)
+                        <div class="text-info">
+                            <div id="result"></div>
+                        </div>
+
+                    </ul>
+                    <ul>
+                        <div class="text-info">
+                            <li>@Html.Label("Category:")</li>
+                        </div>
+                        <li>@Html.EditorFor(Model => Model.category)</li>
+                        @Html.ValidationMessageFor(Model => Model.category)
+
+                    </ul>
+                  
+                    <ul>
+                        
+                            <li>@Html.Label("Upload image :")</li>
+                    
+                        
+                            <li>  @Html.TextBoxFor(Model => Model.photo, new { type = "file" })</li>
+                            @Html.ValidationMessageFor(Model => Model.photo)
+                      
+
+
+                    </ul>
+                  
+                  
+                   
+                    <input id="adds" type="submit" value="Add">
+
+                </fieldset>
+            }
+
+
+
+
+        </div>
+
+    </div>
+</div>
+
+
+

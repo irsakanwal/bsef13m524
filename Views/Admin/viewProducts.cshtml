@@ -1,0 +1,124 @@
+﻿@model  List<BooksGallery.Models.product>
+@{
+    ViewBag.Title = "viewProducts";
+}
+
+
+<div>
+    <table border="1" width="70%" style="margin-left:40px ; margin-right:20px ;margin-top:30px; background-color:bisque">
+
+        <tr>
+
+            <th>
+
+                code
+
+            </th>
+
+            <th>
+
+                Book_Name
+
+            </th>
+
+            <th>
+
+                Author
+
+            </th>
+
+            <th>
+
+                price
+
+            </th>
+            <th>
+
+                photo
+
+            </th>
+            <th>
+
+                Category
+
+            </th>
+           
+            <th>
+
+                Edit
+
+            </th>
+            <th>
+
+                Delete
+
+            </th>
+
+
+        </tr>
+
+        @{
+            foreach (var v in Model)
+            {
+
+                <tr>
+
+
+
+                    <td>
+
+                        @Html.Encode(v.code)
+
+                    </td>
+
+                    <td>
+
+                        @Html.Encode(v.name)
+
+                    </td>
+
+                    <td>
+
+                        @Html.Encode(v.author)
+
+                    </td>
+
+                    <td>
+
+                        @Html.Encode(v.price)
+
+                    </td>
+                    <td>
+
+                        @Html.Encode(v.photo)
+
+                    </td>
+                    <td>
+
+                        @Html.Encode(v.category)
+
+                    </td>
+                   
+                    <td>
+
+                        @Html.ActionLink("Edit", "edit", new { code = v.code })
+
+                    </td>
+                    <td>
+
+                        @Html.ActionLink("Delete", "DeleteProduct", new { code= v.code })
+
+                    </td>
+
+                </tr>
+            }
+
+        }
+
+    </table>
+
+
+</div>
+
+
+

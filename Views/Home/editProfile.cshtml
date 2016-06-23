@@ -1,0 +1,126 @@
+﻿
+
+@model  BooksGallery.Models.SignUp
+@{
+    ViewBag.Title = "edit";
+}
+
+<body style="background-color:bisque">
+    <div align="center">
+        <h2>Edit</h2>
+        @using (Html.BeginForm("Edit", "Home", FormMethod.Post, new
+        { enctype = "multipart/form-data", AUTOCOMPLETE = "off" }))
+        {
+            <fieldset>
+                @Html.HiddenFor(Model => Model.Id)
+            <ul>
+                <div class="text-info" >
+                    <li>@Html.Label("First Name :")</li>
+                    <li>@Html.TextBoxFor(Model => Model.fname)</li>
+
+
+                </div>
+
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("Last Name :")</li>
+                    <li>@Html.TextBoxFor(Model => Model.lname)</li>
+
+                </div>
+
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("Email :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.email)</li>
+
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("Password :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.password)</li>
+
+
+            </ul>
+            <ul>
+                <div class="text-info" style="align-items:center">
+                    <li>@Html.Label("User Name :")</li>
+
+
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.uname, new { @class = "user_name" })</li>
+
+                <div class="text-info" style="align-items:center">
+                    <div id="result" style="align-items:center"></div>
+                </div>
+            </ul>
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Age :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.age)</li>
+
+
+            </ul>
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Secret Question :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.secretQuiz)</li>
+
+
+            </ul>
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Secret Answer :")</li>
+                </div>
+                <li>@Html.TextBoxFor(Model => Model.secretAns)</li>
+
+
+            </ul>
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Profile image :")</li>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="text-info">
+                    <li>  @Html.TextBoxFor(Model => Model.photo)</li>
+
+                </div>
+
+
+            </ul>
+            <ul>
+                <div class="text-info">
+                    <li>@Html.Label("Upload image :")</li>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="text-info">
+                    <li>  @Html.TextBoxFor(Model => Model.photo, new { type = "file" })</li>
+
+                </div>
+
+
+            </ul>
+            <div class="clearfix"></div>
+            <input id="regis" type="submit" value="save">
+
+        </fieldset>
+
+        <div>
+            @Html.ActionLink("HOME", "Index", "Home")
+        </div>
+        }
+    </div>
+</body>
+
+
+
